@@ -9,6 +9,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY server ./server
 
-# Никаких фиксированных портов!
-# Railway передаст переменную PORT — её и используем.
-CMD ["sh", "-c", "uvicorn server.main:app --host 0.0.0.0 --port ${PORT}"]
+# Запускаем uvicorn на том порту, который Railway передаёт через переменную PORT
+CMD uvicorn server.main:app --host 0.0.0.0 --port ${PORT}
